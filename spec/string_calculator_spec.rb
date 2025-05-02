@@ -6,6 +6,10 @@ RSpec.describe StringCalculator do
     it "returns 0 for an empty string" do
       expect(StringCalculator.add("")).to eq(0)
     end
+
+    it "returns number for an passing single strig value" do
+    	expect(StringCalculator.add("1")).to eq(1)
+    end
   end
 end
 
