@@ -7,9 +7,14 @@ RSpec.describe StringCalculator do
       expect(StringCalculator.add("")).to eq(0)
     end
 
-    it "returns number for an passing single strig value" do
+    it "returns number for an passing single string value" do
     	expect(StringCalculator.add("1")).to eq(1)
     end
+
+     it "returns number for an passing mutiple string value" do
+    	expect(StringCalculator.add("1,5,5")).to eq(11)
+    end
+       
   end
 end
 
