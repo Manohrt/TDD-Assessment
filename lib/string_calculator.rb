@@ -13,8 +13,12 @@ class StringCalculator
       input_data = input_data.sub(%r{^.*//.+\n}, '')
     end
 
-    # Spliting numbers based on the delimiters and convert to integers
-    number_list = input_data.split(delimiter).flat_map { |s| s.split(delimiters) }.map(&:to_i)
+    # Check nly digits and no delimiters, Spliting numbers based on the delimiters and convert to integers
+    if input_data.match?(/^\d+$/)
+      number_list = input_data.chars.map(&:to_i)
+    else
+      number_list = input_data.split(delimiter).flat_map { |s| s.split(delimiters) }.map(&:to_i)
+    end
 
     negatives = number_list.select { |num| num < 0 }
 

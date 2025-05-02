@@ -12,7 +12,7 @@ RSpec.describe StringCalculator do
     	expect(StringCalculator.add("1")).to eq(1)
     end
 
-     it "returns number for an passing mutiple string value" do
+    it "returns number for an passing mutiple string value" do
     	expect(StringCalculator.add("1,5,5")).to eq(11)
     end
 
@@ -26,6 +26,10 @@ RSpec.describe StringCalculator do
 
     it "raises an error with negative numbers of string value" do
       expect { StringCalculator.add("1,-7,-3") }.to raise_error("negative numbers not allowed: -7,-3")
+    end
+
+    it "returns number for an passing mutiple no delimiters string value" do
+      expect(StringCalculator.add("456")).to eq(15)
     end
        
   end
