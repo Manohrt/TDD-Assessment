@@ -13,7 +13,7 @@ class StringCalculator
       input_data = input_data.sub(%r{^.*//.+\n}, '')
     end
 
-    # Check nly digits and no delimiters, Spliting numbers based on the delimiters and convert to integers
+    # Check only digits and no delimiters, Spliting numbers based on the delimiters and convert to integers
     if input_data.match?(/^\d+$/)
       number_list = input_data.chars.map(&:to_i)
     else
