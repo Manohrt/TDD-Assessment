@@ -18,6 +18,10 @@ RSpec.describe StringCalculator do
     it "returns sum of numbers separated by commas and newlines string value" do
       expect(StringCalculator.add("1\n2,3")).to eq(6)
     end
+
+    it "supports custom delimiters like //;\n4;2" do
+      expect(StringCalculator.add("//;\n4;2")).to eq(6)
+    end
        
   end
 end
