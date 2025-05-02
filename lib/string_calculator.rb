@@ -2,15 +2,24 @@ class StringCalculator
   def self.add(input_data)
     return 0 if input_data.strip.empty?
     
-    # based on the split handle multiple conditions
+    # based on the default conditions
     delimiters = /,|\n/
-    numbers = input_data
 
-    if input_data.start_with?('//')
-      delimiter_line, numbers = input_data.split("\n", 2)
-      delimiter = Regexp.escape(delimiter_line[2..-1])
+    # Handle delimiter for any regx
+    if input_data.match?(%r{^.*//(.+)\n})
+      match_data = input_data.match(%r{^.*//(.+)\n})
+      manual_delimiter = Regexp.escape(match_data[1])
+      delimiter = /#{manual_delimiter}/
+      input_data = input_data.sub(%r{^.*//.+\n}, '')
     end
 
-    numbers.split(/#{delimiter}/).map(&:to_i).sum
+    # Spliting numbers based on the delimiters and convert to integers
+    number_list = input_data.split(delimiter).flat_map { |s| s.split(delimiters) }.map(&:to_i)
+
+    negatives = number_list.select { |num| num < 0 }
+
+    raise "negative numbers not allowed: #{negatives.join(',')}" if negatives.any?
+
+    number_list.sum
   end
 end
