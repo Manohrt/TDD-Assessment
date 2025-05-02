@@ -14,6 +14,10 @@ RSpec.describe StringCalculator do
      it "returns number for an passing mutiple string value" do
     	expect(StringCalculator.add("1,5,5")).to eq(11)
     end
+
+    it "returns sum of numbers separated by commas and newlines string value" do
+      expect(StringCalculator.add("1\n2,3")).to eq(6)
+    end
        
   end
 end
